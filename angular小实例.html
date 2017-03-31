@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo10-2 自定义指令</title>
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript">
+       angular.module("myApp",[]).controller("test1",function($scope){
+             $scope.uname="hello:Tom";
+             $scope.message=[{"name":"王三","age":19,"sex":"男"},{"name":"李四","age":21,"sex":"女"}];
+             console.log($scope.message);
+             $scope.delStu=function(index){
+               $scope.message.splice(index,1);
+console.log($scope.message);
+             };
+       });
+  </script>
+</head>
+<body >
+     <div ng-app="myApp" ng-controller="test1">
+         <p>{{uname}}</p>
+         <table  border="1" width="400" cellspacing="0">
+           <tr>
+             <td>姓名</td>
+             <td>年龄</td>
+             <td>性别</td>
+             <td>删除</td>
+           </tr>
+           <tr ng-repeat="value in message">
+             <td>{{value.name}}</td>
+             <td>{{value.age}}</td>
+             <td>{{value.sex}}</td>
+             <td>
+               <input type="button" ng-click="delStu($index);" value="删除">
+             </td>
+           </tr>
+         </table>
+     </div>
+</body>
+</html>
